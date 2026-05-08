@@ -59,7 +59,7 @@ function App() {
       });
 
       const uploadRes = await fetch(
-        "http://shivam-mac.local:8000/api/v1/create-image/",
+        "https://dkc-photos.ai.dkcexportstna.in/api/v1/create-image/",
         {
           method: "POST",
           body: formData,
@@ -109,7 +109,7 @@ function App() {
   const fetchImages = async () => {
     try {
       const res = await fetch(
-        "http://shivam-mac.local:8000/api/v1/list-image/",
+        "https://dkc-photos.ai.dkcexportstna.in/api/v1/list-image/",
       );
       const data = await res.json();
 
@@ -143,7 +143,7 @@ function App() {
 
     try {
       const res = await fetch(
-        `http://shivam-mac.local:8000/api/v1/${id}/update-image-text/`,
+        `https://dkc-photos.ai.dkcexportstna.in/api/v1/${id}/update-image-text/`,
         {
           method: "POST",
           headers: {
