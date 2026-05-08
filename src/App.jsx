@@ -45,6 +45,7 @@ function App() {
     });
 
     // Reset input
+    setShowPicker(false);
     e.target.value = "";
   };
 
