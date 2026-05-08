@@ -8,7 +8,7 @@ function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [showPicker, setShowPicker] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-
+  const [loading, setloading] = useState(false);
   const [editingTexts, setEditingTexts] = useState({});
 
   const cameraInputRef = useRef(null);
@@ -53,6 +53,7 @@ function App() {
     if (currentFiles.length === 0) return;
 
     try {
+      setloading(true);
       const formData = new FormData();
 
       currentFiles.forEach((file) => {
@@ -80,6 +81,8 @@ function App() {
     } catch (err) {
       console.error("Save error:", err);
       showToast("Failed to save");
+    }finally{
+      setloading(false);
     }
   };
 
@@ -226,7 +229,6 @@ function App() {
     }
   };
 
-
   const handleDownloadImage = async (imageUrl, filename = "image") => {
     try {
       const response = await fetch(imageUrl);
@@ -260,6 +262,12 @@ function App() {
   useEffect(() => {
     fetchImages();
   }, []);
+
+  if(loading){
+    return <>
+    <p className="loading-text">Loading...</p>
+    </>
+  }
 
   if (isMobile) {
     return (
